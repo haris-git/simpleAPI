@@ -165,8 +165,19 @@ namespace SimpleAPI.Controllers
 
         // DELETE api/<OrdersController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var orderEntityToRemove = _orderRepository.GetOrder(id);
+            
+            if (orderEntityToRemove == null)
+            {
+                return NotFound();
+            }
+
+            _orderRepository.DeleteOrder(orderEntityToRemove);
+            _orderRepository.Save();
+
+            return NoContent();
         }
     }
 }

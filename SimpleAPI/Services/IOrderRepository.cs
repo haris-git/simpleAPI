@@ -10,6 +10,7 @@ namespace SimpleAPI.Services
     {
         IEnumerable<Order> GetOrders();
         Order GetOrder(int orderId);
+        void DeleteOrder(Order order);
         bool Save();
     }
 }
