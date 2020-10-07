@@ -17,7 +17,8 @@ namespace SimpleAPI.Profiles
             CreateMap<Models.ClientForCreationDto, Entities.Client>();
 
             // Update
-            CreateMap<Models.ClientForUpdateDto, Entities.Client>();
+            CreateMap<Models.ClientForUpdateDto, Entities.Client>()
+                .ReverseMap();  // See the comments in OrderProfile for more information about this method.
         }
     }
 }
