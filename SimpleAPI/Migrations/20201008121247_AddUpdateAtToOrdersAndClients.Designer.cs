@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimpleAPI.Context;
 
 namespace SimpleAPI.Migrations
 {
     [DbContext(typeof(SimpleApiContext))]
-    partial class SimpleApiContextModelSnapshot : ModelSnapshot
+    [Migration("20201008121247_AddUpdateAtToOrdersAndClients")]
+    partial class AddUpdateAtToOrdersAndClients
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

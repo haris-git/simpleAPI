@@ -16,5 +16,10 @@ namespace SimpleAPI.Models
 
         public bool IsPaid { get; set; } = false;
 
+        public int ClientId { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+        
+        public DateTime? UpdatedAt { get; set; }
     }
 }

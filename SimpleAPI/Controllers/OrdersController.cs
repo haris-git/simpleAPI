@@ -147,6 +147,7 @@ namespace SimpleAPI.Controllers
             }
 
             var orderToPatch = _mapper.Map<OrderForUpdateDto>(orderEntity);
+            orderToPatch.UpdatedAt = DateTime.Now;
 
             patchDoc.ApplyTo(orderToPatch, ModelState);
 

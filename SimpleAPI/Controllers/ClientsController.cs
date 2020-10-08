@@ -133,6 +133,7 @@ namespace SimpleAPI.Controllers
             }
 
             var clientToPatch = _mapper.Map<ClientForUpdateDto>(clientFetched);
+            clientToPatch.UpdatedAt = DateTime.Now;
 
             patchDoc.ApplyTo(clientToPatch, ModelState);
 

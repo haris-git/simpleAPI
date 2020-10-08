@@ -28,5 +28,7 @@ namespace SimpleAPI.Entities
         public List<Order> Orders { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+        public DateTime? UpdatedAt { get; set; } = null;
     }
 }

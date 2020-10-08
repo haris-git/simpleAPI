@@ -14,5 +14,7 @@ namespace SimpleAPI.Models
         public string LastName { get; set; }
 
         public string Company { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
     }
 }
