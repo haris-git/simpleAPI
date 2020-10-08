@@ -128,11 +128,11 @@ namespace SimpleAPI.Controllers
         // PATCH api/<OrdersController>/5
         /*
             Example of PATCH request:
-            {
+            [{
                 "op": "replace",
                 "path": "/code",
                 "value": "TTTTTT123"               
-            }
+            }]
          */
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, [FromBody] JsonPatchDocument<OrderForUpdateDto> patchDoc)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SimpleAPI.Models;
 using SimpleAPI.Services;
@@ -108,6 +109,44 @@ namespace SimpleAPI.Controllers
                 return NotFound();
 
             _mapper.Map(client, clientFetched);
+            _clientRepository.Save();
+
+            return NoContent();
+        }
+
+        // PATCH api/<ClientsController>/5
+        /*
+            Example of PATCH request:
+            [{
+                "op": "replace",
+                "path": "/code",
+                "value": "TTTTTT123"               
+            }]
+         */
+        [HttpPatch("{id}")]
+        public IActionResult Patch(int id, [FromBody] JsonPatchDocument<ClientForUpdateDto> patchDoc)
+        {
+            var clientFetched = _clientRepository.GetClient(id, false);
+            if (clientFetched == null)
+            {
+                return NotFound();
+            }
+
+            var clientToPatch = _mapper.Map<ClientForUpdateDto>(clientFetched);
+
+            patchDoc.ApplyTo(clientToPatch, ModelState);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            if (!TryValidateModel(clientToPatch))
+            {
+                return BadRequest();
+            }
+
+            _mapper.Map(clientToPatch, clientFetched);
             _clientRepository.Save();
 
             return NoContent();
