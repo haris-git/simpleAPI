@@ -14,7 +14,5 @@ namespace SimpleAPI.Models
         public string LastName { get; set; }
 
         public string Company { get; set; }
-
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }
