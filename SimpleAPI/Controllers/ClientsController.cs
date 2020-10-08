@@ -96,9 +96,21 @@ namespace SimpleAPI.Controllers
 
         // PUT api/<ClientsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] ClientForUpdateDto client)
         {
-            //TODO Implement this...
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var clientFetched = _clientRepository.GetClient(id, false);
+            if (clientFetched == null)
+                return NotFound();
+
+            _mapper.Map(client, clientFetched);
+            _clientRepository.Save();
+
+            return NoContent();
         }
 
         // DELETE api/<ClientsController>/5
