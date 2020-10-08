@@ -19,7 +19,5 @@ namespace SimpleAPI.Models
         [Required]
         [MaxLength(200)]
         public string Company { get; set; }
-
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

@@ -54,7 +54,7 @@ namespace SimpleAPI.Controllers
         }
 
         // GET api/<ClientsController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetClient")]
         public IActionResult Get(int id, bool includeOrders = false)
         {
             var client = _clientRepository.GetClient(id, includeOrders);
@@ -75,14 +75,30 @@ namespace SimpleAPI.Controllers
 
         // POST api/<ClientsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] ClientForCreationDto client)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var finalClientCreated = _mapper.Map<Entities.Client>(client);
+            _clientRepository.CreateClient(finalClientCreated);
+            _clientRepository.Save();
+
+            var createdClientToReturn = _mapper.Map<Models.ClientDto>(finalClientCreated);
+
+            return CreatedAtRoute(
+                "GetClient",
+                new { id = createdClientToReturn.Id },
+                createdClientToReturn);
         }
 
         // PUT api/<ClientsController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+            //TODO Implement this...
         }
 
         // DELETE api/<ClientsController>/5

@@ -10,6 +10,7 @@ namespace SimpleAPI.Services
     {
         IEnumerable<Client> GetClients();
         Client GetClient(int clientId, bool includeOrdersOfClient);
+        void CreateClient(Client client);
         void AddOrderForClient(int clientId, Order orderToBeCreated);
         void DeleteClient(Client client);
         bool Save();

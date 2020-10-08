@@ -33,6 +33,11 @@ namespace SimpleAPI.Services
             return _context.Clients.OrderBy(c => c.Id).ToList();
         }
 
+        public void CreateClient(Client client)
+        {
+            _context.Add(client);
+        }
+
         public void AddOrderForClient(int clientId, Order orderToBeCreated)
         {
             var client = GetClient(clientId, false);

@@ -58,7 +58,7 @@ namespace SimpleAPI.Controllers
         }
 
         // GET api/<OrdersController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetOrder")]
         public IActionResult Get(int id)
         {
             var order = _orderRepository.GetOrder(id);
@@ -95,7 +95,7 @@ namespace SimpleAPI.Controllers
 
             return CreatedAtRoute(
                 "GetOrder",
-                new { order.ClientId, id = createdOrderToReturn.Id },
+                new { id = createdOrderToReturn.Id },
                 createdOrderToReturn);
         }
 

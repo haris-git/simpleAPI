@@ -15,15 +15,6 @@ namespace SimpleAPI.Models
 
         public string Company { get; set; }
 
-        public int NumberOfOrders 
-        { 
-            get {
-                return Orders.Count;    
-            } 
-        }
-
-        public ICollection<OrderDto> Orders { get; set; } = new List<OrderDto>();
-
         public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

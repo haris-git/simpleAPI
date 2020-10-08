@@ -14,5 +14,4 @@ C:\Users\Haris Logothetis\source\repos\SimpleAPI\SimpleAPI\obj\Debug\netcoreapp2
 C:\Users\Haris Logothetis\source\repos\SimpleAPI\SimpleAPI\obj\Debug\netcoreapp2.1\SimpleAPI.dll
 C:\Users\Haris Logothetis\source\repos\SimpleAPI\SimpleAPI\obj\Debug\netcoreapp2.1\SimpleAPI.pdb
 C:\Users\Haris Logothetis\source\repos\SimpleAPI\SimpleAPI\obj\Debug\netcoreapp2.1\SimpleAPI.genruntimeconfig.cache
-C:\Users\Haris Logothetis\source\repos\SimpleAPI\SimpleAPI\obj\Debug\netcoreapp2.1\SimpleAPI.csprojAssemblyReference.cache
 C:\Users\Haris Logothetis\source\repos\SimpleAPI\SimpleAPI\obj\Debug\netcoreapp2.1\SimpleAPI.csproj.CoreCompileInputs.cache
