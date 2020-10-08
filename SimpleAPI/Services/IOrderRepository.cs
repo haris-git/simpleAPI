@@ -12,5 +12,6 @@ namespace SimpleAPI.Services
         Order GetOrder(int orderId);
         void DeleteOrder(Order order);
         bool Save();
+        bool OrderExists(int orderId);
     }
 }

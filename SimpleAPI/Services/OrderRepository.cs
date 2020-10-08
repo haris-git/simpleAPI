@@ -12,9 +12,10 @@ namespace SimpleAPI.Services
     {
         private SimpleApiContext _context;
 
-        public OrderRepository(SimpleApiContext context )
+        public OrderRepository(SimpleApiContext context)
         {
-            _context = context;
+            _context = context ?? 
+                throw new ArgumentNullException(nameof(context));
         }
 
         public Order GetOrder(int orderId)
@@ -35,6 +36,11 @@ namespace SimpleAPI.Services
         public bool Save()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public bool OrderExists(int orderId)
+        {
+            return _context.Orders.Any(o => o.Id == orderId);
         }
     }
 }

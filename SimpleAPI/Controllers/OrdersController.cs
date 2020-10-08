@@ -170,10 +170,8 @@ namespace SimpleAPI.Controllers
             var orderEntityToRemove = _orderRepository.GetOrder(id);
             
             if (orderEntityToRemove == null)
-            {
                 return NotFound();
-            }
-
+            
             _orderRepository.DeleteOrder(orderEntityToRemove);
             _orderRepository.Save();
 

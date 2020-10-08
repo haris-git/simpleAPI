@@ -87,8 +87,17 @@ namespace SimpleAPI.Controllers
 
         // DELETE api/<ClientsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var clientEntityToRemove = _clientRepository.GetClient(id, false);
+
+            if (clientEntityToRemove == null)
+                return NotFound();
+
+            _clientRepository.DeleteClient(clientEntityToRemove);
+            _clientRepository.Save();
+
+            return NoContent();
         }
     }
 }

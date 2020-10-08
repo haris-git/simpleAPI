@@ -14,10 +14,11 @@ namespace SimpleAPI.Services
 
         public ClientRepository(SimpleApiContext context)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _context = context ?? 
+                throw new ArgumentNullException(nameof(context));
         }
 
-        public Client GetClient(int clientId, bool includeOrdersOfClient)
+        public Client GetClient(int clientId, bool includeOrdersOfClient = false)
         {
             if (includeOrdersOfClient)
             {
@@ -32,20 +33,25 @@ namespace SimpleAPI.Services
             return _context.Clients.OrderBy(c => c.Id).ToList();
         }
 
-        public bool ClientExists(int clientId)
-        {
-            return _context.Clients.Any(c => c.Id == clientId);
-        }
-
         public void AddOrderForClient(int clientId, Order orderToBeCreated)
         {
             var client = GetClient(clientId, false);
             client.Orders.Add(orderToBeCreated);
         }
 
+        public void DeleteClient(Client client)
+        {
+            _context.Remove(client);
+        }
+
         public bool Save()
         {
             return (_context.SaveChanges() >=0);
+        }
+
+        public bool ClientExists(int clientId)
+        {
+            return _context.Clients.Any(c => c.Id == clientId);
         }
     }
 }

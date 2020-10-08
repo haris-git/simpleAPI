@@ -10,8 +10,9 @@ namespace SimpleAPI.Services
     {
         IEnumerable<Client> GetClients();
         Client GetClient(int clientId, bool includeOrdersOfClient);
-        bool ClientExists(int clientId);
         void AddOrderForClient(int clientId, Order orderToBeCreated);
+        void DeleteClient(Client client);
         bool Save();
+        bool ClientExists(int clientId);
     }
 }
