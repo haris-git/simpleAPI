@@ -81,17 +81,20 @@ namespace SimpleAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (!_clientRepository.ClientExists(order.ClientId))
+            var client = _clientRepository.GetClient(order.ClientId, false);
+
+            if (client == null)
             {
                 return NotFound();
             }
 
             var finalOrderCreated = _mapper.Map<Entities.Order>(order);
+            finalOrderCreated.Client = client;
 
-            _clientRepository.AddOrderForClient(order.ClientId, finalOrderCreated);
-            _clientRepository.Save();
+            _orderRepository.CreateOrder(finalOrderCreated);
+            _orderRepository.Save();
 
-            var createdOrderToReturn = _mapper.Map<Models.OrderDto>(order);
+            var createdOrderToReturn = _mapper.Map<Models.OrderDto>(finalOrderCreated);
 
             return CreatedAtRoute(
                 "GetOrder",

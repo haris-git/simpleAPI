@@ -38,12 +38,6 @@ namespace SimpleAPI.Services
             _context.Add(client);
         }
 
-        public void AddOrderForClient(int clientId, Order orderToBeCreated)
-        {
-            var client = GetClient(clientId, false);
-            client.Orders.Add(orderToBeCreated);
-        }
-
         public void DeleteClient(Client client)
         {
             _context.Remove(client);

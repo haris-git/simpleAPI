@@ -28,6 +28,11 @@ namespace SimpleAPI.Services
             return _context.Orders.OrderBy(o => o.Id).ToList();
         }
 
+        public void CreateOrder(Order order)
+        {
+            _context.Orders.Add(order);
+        }
+
         public void DeleteOrder(Order order)
         {
             _context.Remove(order);
