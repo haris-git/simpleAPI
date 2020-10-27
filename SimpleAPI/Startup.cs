@@ -29,6 +29,7 @@ namespace SimpleAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(); // Only for Development Environment
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddMvcOptions(o =>
                 {
@@ -55,6 +56,10 @@ namespace SimpleAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                app.UseCors(
+                    options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader() // Only for local development purposes
+                );
             }
             else
             {
