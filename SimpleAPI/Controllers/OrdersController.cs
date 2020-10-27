@@ -34,6 +34,7 @@ namespace SimpleAPI.Controllers
 
         // GET: api/<OrdersController>
         [HttpGet]
+        [HttpHead]
         public IActionResult Get()
         {
             var orderEntities = _orderRepository.GetOrders();

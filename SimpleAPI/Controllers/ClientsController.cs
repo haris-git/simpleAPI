@@ -30,6 +30,7 @@ namespace SimpleAPI.Controllers
 
         // GET: api/<ClientsController>
         [HttpGet]
+        [HttpHead]
         public IActionResult Get()
         {
             var clientEntities = _clientRepository.GetClients();
