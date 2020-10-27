@@ -11,7 +11,10 @@ namespace SimpleAPI.Profiles
         public ClientProfile()
         {
             // Read
-            CreateMap<Entities.Client, Models.ClientDto>();
+            CreateMap<Entities.Client, Models.ClientDto>().
+                ForMember(
+                    dest => dest.FullName,
+                    opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
 
             // Create
             CreateMap<Models.ClientForCreationDto, Entities.Client>();
